@@ -1,0 +1,35 @@
+{
+  "users": [
+    {
+      "name": "John Doe",
+      "user_id": 1001
+    },
+    {
+      "name": "Jane Smith",
+      "user_id": 1002
+    }
+  ],
+  "books": [
+    {
+      "title": "Python Programming",
+      "author": "Guido van Rossum",
+      "isbn": "9781449355739",
+      "is_available": 1,
+      "borrowed_by": 0
+    },
+    {
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "isbn": "9780132350884",
+      "is_available": 1,
+      "borrowed_by": 0
+    },
+    {
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "isbn": "9780743273565",
+      "is_available": 1,
+      "borrowed_by": 0
+    }
+  ]
+}
