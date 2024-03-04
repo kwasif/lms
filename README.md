@@ -11,7 +11,9 @@ Current Features
 2) List of Books : Display list of books in the library
 3) Add User : Addition of new user to the library by providing username and user ID
 4) Checkout Book : Enables the user to check out a book. User needs to provide user id and ISBN of the book
-5) Exit : Terminates the application and exits the LMS. Updates the data records for users, books and saves session logs
+5) Checkin Book : Enables the user to return a book. User needs to provide user id and ISBN of the book
+6) Track Book Availability : Checks the availability status of the book based on ISBN provided
+7) Exit : Terminates the application and exits the LMS. Updates the data records for users, books and saves session logs
 
 Assumptions 
 The following assumptions were made while developing the application 
