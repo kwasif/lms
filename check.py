@@ -14,7 +14,7 @@ class Check:
             choosen_book['book']['borrowed_by'] = user['users']['user_id']
             index = choosen_book['index']
 
-            Book.update(library, index, user['users']['user_id'],0)
+            Book.update_book(library, index, user['users']['user_id'],0)
             #Check out status updated in library
 
             timestamp = datetime.now()
@@ -23,12 +23,13 @@ class Check:
         else:
             print(f"{choosen_book['book']['title']} is not available.")
 
+    # Method for check in of book by registered user
     @staticmethod
     def check_in(library, user,  return_book):
         if return_book['book']['is_available'] == 0 and return_book['book']['borrowed_by'] == user['users']['user_id']:
             index = return_book['index']
 
-            Book.update(library, index, 0, 1)
+            Book.update_book(library, index, 0, 1)
             # Checkin status updated in library
 
             timestamp = datetime.now()
