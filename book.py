@@ -35,7 +35,7 @@ class Book:
     # Adds book to the library
     def add_book(self, library):
         # ISBN must be unique for every book, check if this ISBN is already used
-        search_result = Book.search(library.books, self.isbn)
+        search_result = Book.search_book(library.books, self.isbn)
         if len(search_result) != 0:
             print(f"FAILED to add book, ISBN: {self.isbn} already exists in library")
         else:
@@ -69,7 +69,7 @@ class Book:
     #Availability status of a book
     @staticmethod
     def track_availability(library, isbn):
-        search_isbn = Book.search(library.books, isbn)
+        search_isbn = Book.search_book(library.books, isbn)
         if len(search_isbn) != 0:
             print(f"Availability status of book with isbn:: {isbn} is {bool(search_isbn[0]['book']['is_available'])}")
         else:
