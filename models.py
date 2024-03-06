@@ -31,7 +31,7 @@ class Models:
             new_user_id = int(new_user_id)
             if new_user_id > 0:
                 new_user = User(new_name, new_user_id)
-                new_user.add(self)
+                new_user.add_user(self)
             else:
                 print("Entered non zero User ID")
         else:
@@ -44,8 +44,8 @@ class Models:
         else:
             if user_id.isdigit():
                 # Check if user id is registered and book (isbn) is available before issuing book
-                search_isbn = Book.search(self.books, isbn)
-                search_user = User.search(self.users, None, int(user_id))
+                search_isbn = Book.search_book(self.books, isbn)
+                search_user = User.search_user(self.users, None, int(user_id))
                 if len(search_user) != 0:
                     if len(search_isbn) != 0:
                         Check.check_out(self, search_user[0], search_isbn[0])
@@ -61,8 +61,8 @@ class Models:
         else:
             if user_id.isdigit():
                 # Check if user id is registered and book (isbn) is available before taking the book
-                search_isbn = Book.search(self.books, isbn)
-                search_user = User.search(self.users, None, int(user_id))
+                search_isbn = Book.search_book(self.books, isbn)
+                search_user = User.search_user(self.users, None, int(user_id))
                 if len(search_user) != 0:
                     if len(search_isbn) != 0:
                         Check.check_in(self, search_user[0], search_isbn[0])
