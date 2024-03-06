@@ -3,7 +3,7 @@ from datetime import datetime
 
 class Book:
     # Constructor for Book class
-    def __init__(self, title, author, isbn):
+    def __init__(self, title=None, author=None, isbn=None):
         self.title = title  # Book title
         self.author = author  # Author name
         self.isbn = isbn  # Unique 13 digit number to identify any book stored as string to avoid removal of 0s
@@ -21,8 +21,10 @@ class Book:
     def list_books(library):
         for book in library.books:
             print(f"Title: {book['title']}, Author: {book['author']}, ISBN: {book['isbn']}, availability: {bool(book['is_available'])}")
+
+    # Search book based on username or userid
     @staticmethod
-    def search(book_list, query):
+    def search_book(book_list, query):
         matching_books = []
         query_lower = query.lower()
         for count, book in enumerate(book_list):
@@ -30,6 +32,7 @@ class Book:
                 matching_books.append({"index": count, "book": book})
         return matching_books
 
+    # Adds book to the library
     def add_book(self, library):
         # ISBN must be unique for every book, check if this ISBN is already used
         search_result = Book.search(library.books, self.isbn)
@@ -43,16 +46,25 @@ class Book:
 
     # Updating book attributes, allowed changing availability status and borrower id only
     @staticmethod
-    def update(library, record_index, user_id, is_available):
+    def update_book(library, record_index, user_id, is_available):
         library.books[record_index]['is_available'] = is_available
         library.books[record_index]['borrowed_by'] = user_id
         timestamp = datetime.now()
         library.log.append(f"{timestamp}:: UPDATED BOOK Status titled {library.books[record_index]['title']} by {library.books[record_index]['author']} with ISBN {library.books[record_index]['isbn']} and availability {bool(is_available)}")
 
-    def delete(self, library):
-        library.books.remove(self)
-        timestamp = datetime.now()
-        library.log.append(f"{timestamp}:: REMOVED BOOK titled {self.title} by {self.author} from library")
+    # Delete book based on isbn
+    def delete_book(self, library):
+        for book in library.books:
+            if book["isbn"] == self.isbn:
+                timestamp = datetime.now()
+                library.log.append(
+                    f"{timestamp}:: DELETED BOOK titled {book['title']} by {book['author']} with ISBN {book['isbn']}")
+
+                library.books.remove(book)
+                print("Book deleted")
+                return True
+        print("Book not found")
+        return False
 
     #Availability status of a book
     @staticmethod
