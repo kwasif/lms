@@ -1,5 +1,3 @@
-from book import Book
-from user import User
 import json
 from datetime import datetime
 
@@ -10,6 +8,7 @@ class Storage:
         timestamp = datetime.now()
         log_file_str = "log_" + timestamp.strftime("%Y%m%d-%H%M%S") + ".txt"
         self.session_log_filename = log_file_str
+        self.located_data_file = 0
 
     @staticmethod
     def serialize_data(library):
@@ -29,14 +28,14 @@ class Storage:
                 data = json.load(f)
                 library.books = data["books"]
                 library.users = data["users"]
+                self.located_data_file = 1
         except FileNotFoundError:
             print("Data file with user and book information not found!")
+            self.located_data_file = 0
 
 
     def save_data(self, library):
-        #data = {"books": [book.__dict__ for book in library.books], "users": [user.__dict__ for user in library.users]}
-        #data = {"books": [book.__dict__ for book in library.books], "users": [user.__dict__ for user in library.users]}
-        #user_json = json.dumps(library.users)
+
         with open(self.data_filename, "w") as json_file:
             json.dump(self.serialize_data(library), json_file, indent=4)
 
