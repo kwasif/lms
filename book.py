@@ -75,11 +75,5 @@ class Book:
         else:
             print(f"Book with isbn:: {isbn} does not exist in library ")
 
-    # Method to check if isbn number is 13 digit
-    @staticmethod
-    def is_valid_isbn(isbn):
-        if len(isbn) == 13:
-            return True
-        else:
-            return False
+
 
